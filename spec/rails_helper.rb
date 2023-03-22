@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'digest/md5'
 require 'simplecov'
 SimpleCov.start do
 SimpleCov.add_filter "/spec/"
