@@ -13,12 +13,16 @@ RSpec.describe Types::QueryType do
           }
         GQL
 
-      result = LunchAndLearnGqlSchema.execute(query).as_json
-      output = result['data']['restCountries']
+      result = LunchAndLearnGqlSchema.execute(query).to_json
+      json = JSON.parse(result, symbolize_names: true)
 
-      expect(output).to be_a Array
-      expect(output.first).to have_key "name"
-      expect(output.first).to have_key "capital"
+      expect(json).to be_a Hash
+      expect(json).to have_key :data
+      expect(json[:data]).to be_a Hash
+      expect(json[:data]).to have_key :restCountries
+      expect(json[:data][:restCountries]).to be_a Array
+      expect(json[:data][:restCountries].first).to have_key :name
+      expect(json[:data][:restCountries].first).to have_key :capital
     end
   end
 end
