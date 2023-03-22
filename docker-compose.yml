@@ -1,0 +1,25 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: LUNCH_AND_LEARN_GQL_DATABASE_PASSWORD
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:LUNCH_AND_LEARN_GQL_DATABASE_PASSWORD@db:5432/postgres
+volumes:
+  db-data:
