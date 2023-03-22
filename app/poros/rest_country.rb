@@ -4,7 +4,7 @@ class RestCountry
               :capital
 
   def initialize(data)
-    @name = data[:name][:official]
+    @name = data[:name][:common]
     @capital = data[:capital][0]
   end
 end
