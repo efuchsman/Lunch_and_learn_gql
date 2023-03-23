@@ -30,7 +30,7 @@ module Types
     def learning_resource(country:)
       video = VideoFacade.country_video(country)
       images = ImageFacade.country_images(country)
-      LearningResource.new(country, video, images)
+      LearningResource.new(country.capitalize, video, images)
     end
   end
 end
