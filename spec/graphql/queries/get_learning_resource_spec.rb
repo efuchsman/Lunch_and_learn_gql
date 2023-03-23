@@ -24,6 +24,14 @@ RSpec.describe Types::QueryType do
         result = LunchAndLearnGqlSchema.execute(query).to_json
         json = JSON.parse(result, symbolize_names: true)
 
+        expect(json).to be_a Hash
+        expect(json).to have_key :data
+        expect(json[:data]).to be_a Hash
+        expect(json[:data]).to have_key :learningResource
+        expect(json[:data][:learningResource].keys).to eq([:country, :video, :images])
+        expect(json[:data][:learningResource][:video].keys).to eq([:title, :youtubeVideoId])
+        expect(json[:data][:learningResource][:images]).to be_a Array
+        expect(json[:data][:learningResource][:images].first.keys).to eq([:altTag, :url])
       end
     end
   end
