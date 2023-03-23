@@ -11,6 +11,10 @@ module Types
       argument :country, String, required: true
     end
 
+    field :learning_resource, LearningResourceType, null: true do
+      argument :country, String, required: true
+    end
+
     def rest_countries
       RestCountriesFacade.all_countries
     end
@@ -21,6 +25,12 @@ module Types
 
     def recipes(country:)
       RecipeFacade.recipes_by_country(country)
+    end
+
+    def learning_resource(country:)
+      video = VideoFacade.country_video(country)
+      images = ImageFacade.country_images(country)
+      LearningResource.new(country, video, images)
     end
   end
 end

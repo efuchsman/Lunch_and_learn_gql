@@ -1,5 +1,5 @@
 module Types
-  class RecipeType < Types::BaseObject
+  class VideoType < Types::BaseObject
     field :youtube_video_id, ID, null: false
     field :title, String
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
