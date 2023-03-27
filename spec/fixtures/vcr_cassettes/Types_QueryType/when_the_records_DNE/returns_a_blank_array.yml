@@ -2992,4 +2992,356 @@ http_interactions:
       encoding: UTF-8
       string: '{"from":1,"to":0,"count":0,"_links":{},"hits":[]}'
   recorded_at: Thu, 23 Mar 2023 20:59:28 GMT
+- request:
+    method: get
+    uri: https://api.edamam.com/api/recipes/v2?app_id=app_id&app_key=app_key&q=Us2&type=public
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Mon, 27 Mar 2023 16:56:10 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '49'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Served-By:
+      - ip-10-0-1-154.ec2.internal/10.0.1.154
+      Content-Language:
+      - en
+      Strict-Transport-Security:
+      - max-age=15552001
+      X-Request-Id:
+      - 5096166fcab0dcf82f146f8e6060edea
+    body:
+      encoding: UTF-8
+      string: '{"from":1,"to":0,"count":0,"_links":{},"hits":[]}'
+  recorded_at: Mon, 27 Mar 2023 16:56:10 GMT
+- request:
+    method: get
+    uri: https://api.edamam.com/api/recipes/v2?app_id=app_id&app_key=app_key&q=Us2&type=public
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Mon, 27 Mar 2023 16:56:11 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '49'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Served-By:
+      - ip-10-0-1-100.ec2.internal/10.0.1.100
+      Content-Language:
+      - en
+      Strict-Transport-Security:
+      - max-age=15552001
+      X-Request-Id:
+      - 872b1df9867020948e36dca1822ae94a
+    body:
+      encoding: UTF-8
+      string: '{"from":1,"to":0,"count":0,"_links":{},"hits":[]}'
+  recorded_at: Mon, 27 Mar 2023 16:56:10 GMT
+- request:
+    method: get
+    uri: https://api.edamam.com/api/recipes/v2?app_id=app_id&app_key=app_key&q=Us2&type=public
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Mon, 27 Mar 2023 16:56:56 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '49'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Served-By:
+      - ip-10-0-1-100.ec2.internal/10.0.1.100
+      Content-Language:
+      - en
+      Strict-Transport-Security:
+      - max-age=15552001
+      X-Request-Id:
+      - 553fad18628dde774111e75e355a6dbd
+    body:
+      encoding: UTF-8
+      string: '{"from":1,"to":0,"count":0,"_links":{},"hits":[]}'
+  recorded_at: Mon, 27 Mar 2023 16:56:56 GMT
+- request:
+    method: get
+    uri: https://api.edamam.com/api/recipes/v2?app_id=app_id&app_key=app_key&q=Us2&type=public
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Mon, 27 Mar 2023 16:56:57 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '49'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Served-By:
+      - ip-10-0-1-154.ec2.internal/10.0.1.154
+      Content-Language:
+      - en
+      Strict-Transport-Security:
+      - max-age=15552001
+      X-Request-Id:
+      - 7f4e9f001418765882de09cc5bff1ec6
+    body:
+      encoding: UTF-8
+      string: '{"from":1,"to":0,"count":0,"_links":{},"hits":[]}'
+  recorded_at: Mon, 27 Mar 2023 16:56:57 GMT
+- request:
+    method: get
+    uri: https://api.edamam.com/api/recipes/v2?app_id=app_id&app_key=app_key&q=Us2&type=public
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Mon, 27 Mar 2023 17:37:46 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '49'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Served-By:
+      - ip-10-0-1-100.ec2.internal/10.0.1.100
+      Content-Language:
+      - en
+      Strict-Transport-Security:
+      - max-age=15552001
+      X-Request-Id:
+      - e7f56a80ac8f1e2725116231c9e74955
+    body:
+      encoding: UTF-8
+      string: '{"from":1,"to":0,"count":0,"_links":{},"hits":[]}'
+  recorded_at: Mon, 27 Mar 2023 17:37:46 GMT
+- request:
+    method: get
+    uri: https://api.edamam.com/api/recipes/v2?app_id=app_id&app_key=app_key&q=Us2&type=public
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Mon, 27 Mar 2023 17:37:46 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '49'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Served-By:
+      - ip-10-0-1-154.ec2.internal/10.0.1.154
+      Content-Language:
+      - en
+      Strict-Transport-Security:
+      - max-age=15552001
+      X-Request-Id:
+      - 76489db51ac70828de50b31b2a75f7f0
+    body:
+      encoding: UTF-8
+      string: '{"from":1,"to":0,"count":0,"_links":{},"hits":[]}'
+  recorded_at: Mon, 27 Mar 2023 17:37:46 GMT
+- request:
+    method: get
+    uri: https://api.edamam.com/api/recipes/v2?app_id=app_id&app_key=app_key&q=Us2&type=public
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Mon, 27 Mar 2023 17:41:29 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '49'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Served-By:
+      - ip-10-0-1-154.ec2.internal/10.0.1.154
+      Content-Language:
+      - en
+      Strict-Transport-Security:
+      - max-age=15552001
+      X-Request-Id:
+      - 762d0a8bde6fb55e765c59cb387bef58
+    body:
+      encoding: UTF-8
+      string: '{"from":1,"to":0,"count":0,"_links":{},"hits":[]}'
+  recorded_at: Mon, 27 Mar 2023 17:41:29 GMT
+- request:
+    method: get
+    uri: https://api.edamam.com/api/recipes/v2?app_id=app_id&app_key=app_key&q=Us2&type=public
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Mon, 27 Mar 2023 17:41:29 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '49'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Served-By:
+      - ip-10-0-1-100.ec2.internal/10.0.1.100
+      Content-Language:
+      - en
+      Strict-Transport-Security:
+      - max-age=15552001
+      X-Request-Id:
+      - 6cb783fb76b38933f5207962f6167a44
+    body:
+      encoding: UTF-8
+      string: '{"from":1,"to":0,"count":0,"_links":{},"hits":[]}'
+  recorded_at: Mon, 27 Mar 2023 17:41:29 GMT
 recorded_with: VCR 6.1.0
