@@ -15,6 +15,10 @@ module Types
       argument :country, String, required: true
     end
 
+    field :user, UserType, null: true do
+      argument :api_key, String, required: true
+    end
+
     def rest_countries
       RestCountriesFacade.all_countries
     end
@@ -31,6 +35,10 @@ module Types
       video = VideoFacade.country_video(country)
       images = ImageFacade.country_images(country)
       LearningResource.new(country.capitalize, video, images)
+    end
+
+    def user(api_key:)
+      User.find_by(api_key: api_key)
     end
   end
 end
