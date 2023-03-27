@@ -1,4 +1,3 @@
-
 module Types
   class RestCountriesType < Types::BaseObject
     field :id, ID, null: false
