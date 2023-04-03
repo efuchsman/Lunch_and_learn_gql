@@ -1,24 +1,28 @@
 module Mutations
-  class CreateFavorite < Mutations::BaseMutation
-    argument :params, Types::FavoriteInputType, required: true
+  class DeleteFavorite < Mutations::BaseMutation
+    argument :id, ID, required: true
     argument :api_key, String, required: true
-
-    field :favorite, Types::FavoriteType, null: false
 
     field :success, String, null: true
 
-    def resolve(params:, api_key:)
-      favorite_params = Hash params
+    def resolve(id:, api_key:)
 
       begin
         user = User.find_by(api_key: api_key)
+
         if user.nil?
           raise GraphQL::ExecutionError, "No User found with the apiKey provided"
         end
 
-        favorite = user.favorites.create!(favorite_params)
-        { favorite: favorite, success: "New favorite created" }
+        favorite = Favorite.find_by(id: id)
 
+        if favorite.nil?
+          raise GraphQL::ExecutionError, "No Favorite found with the ID provided"
+        end
+
+        favorite.destroy
+
+        { success: "Favorite successfully deleted" }
 
       rescue ActiveRecord::RecordInvalid => e
         GraphQL::ExecutionError.new("Invalid attributes for #{e.record.class}:"\
