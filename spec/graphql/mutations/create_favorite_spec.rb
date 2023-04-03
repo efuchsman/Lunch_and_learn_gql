@@ -87,5 +87,33 @@ RSpec.describe Mutations::CreateFavorite, type: :request do
         expect(json[:errors].first[:message]).to eq("No User found with the apiKey provided")
       end
     end
+
+    describe "When required params are missing" do
+      it "throws an error", :vcr do
+        query =
+          <<~GQL
+            mutation {
+              createFavorite(input: {params: { country: "", recipeTitle: "72oz Tomahawk Ribeye", recipeLink: "https://www.somelink.com" }, apiKey: "#{user.api_key}"}){
+                favorite {
+                  id
+                  country
+                  recipeTitle
+                  recipeLink
+                  userId
+                }
+              }
+            }
+          GQL
+
+        result = LunchAndLearnGqlSchema.execute(query).to_json
+        json = JSON.parse(result, symbolize_names: true)
+
+        expect(json).to be_a Hash
+        expect(json).to have_key :errors
+        expect(json[:errors]).to be_a Array
+        expect(json[:errors].first).to have_key :message
+        expect(json[:errors].first[:message]).to eq("Invalid attributes for Favorite: Country can't be blank")
+      end
+    end
   end
 end
