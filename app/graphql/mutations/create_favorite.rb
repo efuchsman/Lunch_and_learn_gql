@@ -11,10 +11,12 @@ module Mutations
 
       begin
         user = User.find_by(api_key: api_key)
+        if user.nil?
+          raise GraphQL::ExecutionError, "No User found with the apiKey provided"
+        end
+
         favorite = user.favorites.create!(favorite_params)
-
         { favorite: favorite }
-
       rescue ActiveRecord::RecordInvalid => e
         GraphQL::ExecutionError.new("Invalid attributes for #{e.record.class}:"\
           " #{e.record.errors.full_messages.join(', ')}")
