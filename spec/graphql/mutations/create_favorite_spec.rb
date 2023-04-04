@@ -40,7 +40,6 @@ RSpec.describe Mutations::CreateFavorite, type: :request do
               }
             }
           GQL
-
     end
 
     describe "when the user exists" do
