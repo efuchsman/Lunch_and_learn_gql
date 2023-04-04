@@ -37,10 +37,11 @@
 
 # Technology Used: 
 
-![Ruby on Rails](	https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=7b95ad&color=141422)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-100?style=for-the-badge&logo=PostgreSQL&logoColor=7b95ad&color=141422)
-![Graphql](https://img.shields.io/badge/Graphql-100?style=for-the-badge&logo=graphql&logoColor=7b95ad&color=141422)
-![Docker](https://img.shields.io/badge/Docker-100?style=for-the-badge&logo=docker&logoColor=7b95ad&color=141422)
+![Ruby on Rails](	https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=ffffff&color=CC0000)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-008bb9?style=for-the-badge&logo=PostgreSQL&logoColor=ffffff&color=008bb9)
+![Graphql](https://img.shields.io/badge/Graphql-ffffff?style=for-the-badge&logo=graphql&logoColor=e535ab&color=ffffff)
+![Docker](https://img.shields.io/badge/Docker-ffffff?style=for-the-badge&logo=docker&logoColor=ffffff&color=0db7ed)
+![Git](https://img.shields.io/badge/Github_Actions-100?style=for-the-badge&logo=GitHub&logoColor=ffffff&color=141422)
 
 
 # Repository
@@ -61,68 +62,188 @@ https://github.com/efuchsman/Lunch_and_learn_gql
 11. All 48 tests should be passing with 100% coverage: `bundle exec rspec`
 12. Run the server `rails s`
 
+<h3>Setup for Docker</h3>
+
+1. Fork and Clone the repository
+2. Open Docker Desktop and sign in
+3. Builder docker image and launch server container: `docker-compose up --build` (You will only have to run `docker-compose up` after this unless you pull a newly updated version of the repository from GitHub)
+4. Migrate the database: `docker-compose exec web bundle exec rake db:migrate`
+5. Seed data: `docker-compose exec web bundle exec rake db:seed`
+6. To close the the container: `Ctrl-C`
+7. If you need to drop the database and reseed data: `docker-compose down --volumes`
+
 # Endpoints
 
 In your browser: http://localhost:3000/graphiql
 
-## Recipes
+## Rest Countries
 
-### GET /api/v1/recipes?country=thailand
+### GET restCountries
 
-Response:
+#### Input:
 
 ```
-  {
-     "data": [
-        {
-          "id": null,
-          "type": "recipe",
-          "attributes": {
-          "title": "Andy Ricker's Naam Cheuam Naam Taan Piip (Palm Sugar Simple Syrup)",
-          "url": "https://www.seriouseats.com/recipes/2013/11/andy-rickers-naam-cheuam-naam-taan-piip-palm-sugar-simple-syrup.html",
-          "country": "Thailand",
-          "image": "https://edamam-product-images.s3.amazonaws.com/web-img/611/61165abc1c1c6a185fe5e67167d3e1f0.jpg?..."
-         }
-        },
-      {...},
-      {...},
-      ]
+{
+  restCountries{
+    name
+    capital
   }
+}
+```
+
+#### Output:
+
+```
+{
+  "data": {
+    "restCountries": [
+      {
+        "name": "Barbados",
+        "capital": "Bridgetown"
+      },
+      {
+        "name": "Réunion",
+        "capital": "Saint-Denis"
+      },
+      {..},
+      {..},
+     ]
+   }
+ }
+
+```
+
+### GET randomRestCountry
+
+#### Input:
+
+```
+{
+  randomRestCountry{
+    name
+    capital
+  }
+}
+```
+
+#### Output:
+
+```
+{
+  "data": {
+    "randomRestCountry": {
+      "name": "Guernsey",
+      "capital": "St. Peter Port"
+    }
+  }
+}
+```
+
+## Recipes
+
+### GET recipes 
+
+#### Input:
+
+```
+{
+  recipes(country: "Mexico"){
+    title
+    url
+    image
+    country
+  }
+}
+```
+
+#### Ouptut:
+
+```
+{
+  "data": {
+    "recipes": [
+      {
+        "title": "Avocado from Mexico, Orange and Watercress Salad. Adapted from Chef Richard Sandoval, New York, Mexico and Dubai",
+        "url": "https://food52.com/recipes/5794-avocado-from-mexico-orange-and-watercress-salad-adapted-from-chef-richard-sandoval-new-york-mexico-and-dubai",
+        "image": "https://edamam-product-images.s3.amazonaws.com/web-img/7a0/7a0ce2ee688b9534b92257c4c1f13b95.JPG?X-Amz-Security-Token=IQoJb3JpZ2lu...",
+        "country": "Mexico"
+      },
+      {
+        "title": "New Mexico Chile-Glazed Chicken On Hominy Polenta",
+        "url": "http://www.bonappetit.com/recipes/quick-recipes/2008/12/new_mexico_chile_glazed_chicken",
+        "image": "https://edamam-product-images.s3.amazonaws.com/web-img/393/393b5c81ae860fee33d0a1878c4c4b75.jpg?X-Amz-Security-Token=IQoJb3JpZ2lu...",
+        "country": "Mexico"
+      },
+      {
+        "title": "New Mexico Chile Sauce",
+        "url": "http://www.eatingwell.com/recipe/248399/new-mexico-chile-sauce/",
+        "image": "https://edamam-product-images.s3.amazonaws.com/web-img/4eb/4eb6605a116f1ff98bd8cf22237e24e0.jpg?X-Amz-Security-Token=IQoJb3JpZ2l...",
+        "country": "Mexico"
+      },
+      {
+        "title": "Homemade Fresh Chorizo",
+        "url": "https://www.epicurious.com/recipes/food/views/homemade-fresh-chorizo-395919",
+        "image": "https://edamam-product-images.s3.amazonaws.com/web-img/206/20669e3ae301c2f766d35a1ae711be90.jpg?X-Amz-Security-Token=IQoJb3JpZ2l....",
+        "country": "Mexico"
+      },
+     {...},
+     {...},
+     {...},
+    ]
+  }
+}
 ```
 
 ## Learning Resources
 
-### GET /api/v1/learning_resources?country=belgium
+### GET learningResource
 
-Respone:
+#### Input: 
 
 ```
 {
-   "data": {
-      "id": null,
-      "type": "learning_resource",
-      "attributes": {
-         "country": "Belgium",
-         "video": {
-            "title": "A Super Quick History of Belgium",
-            "youtube_video_id": "R6-eMN5En4g"
-          },
-          "images": [
-              {
-                  "alt_tag": "assorted-color of houses near lake",
-                  "url": "https://images.unsplash.com/photo-1491557345352-5929e343eb89?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzOTk0NjN8MHwxfHNlYXJjaHwxfHxCZWxnaXVtfGVufDB8fHx8MTY3NzUzOTg0Mg&ixlib=rb-4.0.3&q=80&w=1080"
-              },
-              {
-                  "alt_tag": "gray and brown building under blue sky",
-                  "url": "https://images.unsplash.com/photo-1461838239441-4475121c0b7d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzOTk0NjN8MHwxfHNlYXJjaHwyfHxCZWxnaXVtfGVufDB8fHx8MTY3NzUzOTg0Mg&ixlib=rb-4.0.3&q=80&w=1080"
-              },
-          {...},
-          {...},
-
-              ]
-          }
-      }
+  learningResource(country: "Portugal"){
+    country
+    video {
+      title
+      youtubeVideoId
+    }
+    images {
+      altTag
+      url
+    }
   }
+}
+```
+
+Output:
+
+```
+{
+  "data": {
+    "learningResource": {
+      "country": "Portugal",
+      "video": {
+        "title": "A Super Quick History of Portugal",
+        "youtubeVideoId": "nQh6V8adGXw"
+      },
+      "images": [
+        {
+          "altTag": "boats docked near seaside promenade]",
+          "url": "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzOTk0NjN8MHwxfHNlYXJjaHwxfHxQb3J0dWdhbHxlbnwwfHx8fDE2ODA2Mjg4NDk&ixlib=rb-4.0.3&q=80&w=1080"
+        },
+        {
+          "altTag": "landscape photography of orange roof houses near body of water",
+          "url": "https://images.unsplash.com/photo-1536663815808-535e2280d2c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzOTk0NjN8MHwxfHNlYXJjaHwyfHxQb3J0dWdhbHxlbnwwfHx8fDE2ODA2Mjg4NDk&ixlib=rb-4.0.3&q=80&w=1080"
+        },
+        {...},
+        {...},
+        {...},
+        {...}
+      ]
+    }
+  }
+}
 ```
 
 ## Users
