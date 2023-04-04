@@ -52,6 +52,50 @@ RSpec.describe Mutations::DeleteFavorite, type: :request do
         expect(json2[:data]).to have_key :deleteFavorite
         expect(json2[:data][:deleteFavorite]).to have_key :success
         expect(json2[:data][:deleteFavorite][:success]).to eq("Favorite successfully deleted")
+
+        expect(user.favorites.count).to eq 0
+      end
+    end
+
+    describe "When the User DNE" do
+      it "throws an error", :vcr do
+        query =
+          <<~GQL
+              mutation {
+                deleteFavorite(input: {id: "#{favorite.id}", apiKey: "#{user.id}"}) {
+                  success
+                }
+              }
+            GQL
+
+        result = LunchAndLearnGqlSchema.execute(query).to_json
+        json = JSON.parse(result, symbolize_names: true)
+
+        expect(json).to be_a Hash
+        expect(json).to have_key :errors
+        expect(json[:errors]).to be_a Array
+        expect(json[:errors].first[:message]).to eq("No User found with the apiKey provided")
+      end
+    end
+
+    describe "When the Favorite DNE" do
+      it "Throws an error", :vcr do
+        query =
+          <<~GQL
+              mutation {
+                deleteFavorite(input: {id: "90000", apiKey: "#{user.api_key}"}) {
+                  success
+                }
+              }
+            GQL
+
+        result = LunchAndLearnGqlSchema.execute(query).to_json
+        json = JSON.parse(result, symbolize_names: true)
+
+        expect(json).to be_a Hash
+        expect(json).to have_key :errors
+        expect(json[:errors]).to be_a Array
+        expect(json[:errors].first[:message]).to eq("No Favorite found with the ID provided")
       end
     end
   end

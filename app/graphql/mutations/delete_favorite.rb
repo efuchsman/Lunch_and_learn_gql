@@ -6,28 +6,20 @@ module Mutations
     field :success, String, null: true
 
     def resolve(id:, api_key:)
+      user = User.find_by(api_key: api_key)
 
-      begin
-        user = User.find_by(api_key: api_key)
-
-        if user.nil?
-          raise GraphQL::ExecutionError, "No User found with the apiKey provided"
-        end
-
-        favorite = Favorite.find_by(id: id)
-
-        if favorite.nil?
-          raise GraphQL::ExecutionError, "No Favorite found with the ID provided"
-        end
-
-        favorite.destroy
-
-        { success: "Favorite successfully deleted" }
-
-      rescue ActiveRecord::RecordInvalid => e
-        GraphQL::ExecutionError.new("Invalid attributes for #{e.record.class}:"\
-          " #{e.record.errors.full_messages.join(', ')}")
+      if user.nil?
+        raise GraphQL::ExecutionError, "No User found with the apiKey provided"
       end
+
+      favorite = Favorite.find_by(id: id)
+
+      if favorite.nil?
+        raise GraphQL::ExecutionError, "No Favorite found with the ID provided"
+      end
+
+      favorite.destroy
+      { success: "Favorite successfully deleted" }
     end
   end
 end
