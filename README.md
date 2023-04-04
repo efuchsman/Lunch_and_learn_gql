@@ -80,7 +80,7 @@ In your browser: http://localhost:3000/graphiql
 
 ### GET restCountries
 
-#### Input:
+#### Request:
 
 ```
 {
@@ -91,7 +91,7 @@ In your browser: http://localhost:3000/graphiql
 }
 ```
 
-#### Output:
+#### Response:
 
 ```
 {
@@ -115,7 +115,7 @@ In your browser: http://localhost:3000/graphiql
 
 ### GET randomRestCountry
 
-#### Input:
+#### Request:
 
 ```
 {
@@ -126,7 +126,7 @@ In your browser: http://localhost:3000/graphiql
 }
 ```
 
-#### Output:
+#### Response:
 
 ```
 {
@@ -143,7 +143,7 @@ In your browser: http://localhost:3000/graphiql
 
 ### GET recipes 
 
-#### Input:
+#### Request:
 
 ```
 {
@@ -156,7 +156,7 @@ In your browser: http://localhost:3000/graphiql
 }
 ```
 
-#### Ouptut:
+#### Response:
 
 ```
 {
@@ -198,7 +198,7 @@ In your browser: http://localhost:3000/graphiql
 
 ### GET learningResource
 
-#### Input: 
+#### Request: 
 
 ```
 {
@@ -216,7 +216,7 @@ In your browser: http://localhost:3000/graphiql
 }
 ```
 
-Output:
+Response:
 
 ```
 {
@@ -247,104 +247,219 @@ Output:
 ```
 
 ## Users
-### POST /api/v1/users
+
+### POST createUser
 
 Request: 
-```
-POST /api/v1/users
-Content-Type: application/json
-Accept: application/json
 
-{
-  "name": "Athena Dao",
-  "email": "athenadao@bestgirlever.com"
+```
+mutation {
+	createUser(input: {params: { name: "Eli Fuchsman", email: "elif@mail.com"}}){
+    user {
+      id
+      name
+      email
+      apiKey
+    }
+  }
 }
 ```
 
 Response:
+
 ```
 {
-    "data": {
-        "id": "1",
-        "type": "user",
-        "attributes": {
-            "name": "Athena Dao",
-            "email": "athenadao@bestgirlever.com",
-            "api_key": "7a631d2ff08b6e901d9f6ae426d803f6"
-        }
+  "data": {
+    "createUser": {
+      "user": {
+        "id": "4",
+        "name": "Eli Fuchsman",
+        "email": "elif@mail.com",
+        "apiKey": "29fa7c8b95df8fa19b6cde918b48fc66"
+      }
     }
+  }
+}
+```
+
+### GET user
+
+#### Request:
+
+```
+{
+  user(apiKey: "29fa7c8b95df8fa19b6cde918b48fc66"){
+    id
+    name
+    email
+    apiKey
+    favorites{
+      id
+      country
+      recipeTitle
+      recipeLink
+    }
+  }
+}
+```
+
+#### Response:
+
+```
+{
+  "data": {
+    "user": {
+      "id": "4",
+      "name": "Eli Fuchsman",
+      "email": "elif@mail.com",
+      "apiKey": "29fa7c8b95df8fa19b6cde918b48fc66",
+      "favorites": []
+    }
+  }
 }
 ```
 
 ## Favorites
 
-* User must include their api key as a paramater in order to create a new favorite recipe.
+### POST createFavorite
 
-### POST /api/v1/favorites?
+#### Request: 
 
-Request: 
 ```
-POST /api/v1/favorites
-Content-Type: application/json
-Accept: application/json
-
-{
-    "api_key": "7a631d2ff08b6e901d9f6ae426d803f6",
-    "country": "united states",
-    "recipe_link": "72oz Tomahawk Ribeye"
+mutation {
+  createFavorite(input: {params: {country: "USA", recipeTitle: "72oz Tomahawk Ribeye", recipeLink: "https://www.somelink.com"}, apiKey:"29fa7c8b95df8fa19b6cde918b48fc66"}){
+    favorite {
+      id
+      country
+      recipeTitle
+      recipeLink
+      userId
+    }
+    success
+  }
 }
 ```
 
-Response: 
+#### Response: 
 
 ```
 {
-    "success": "Favorite Added Successfully"
+  "data": {
+    "createFavorite": {
+      "favorite": {
+        "id": "7",
+        "country": "USA",
+        "recipeTitle": "72oz Tomahawk Ribeye",
+        "recipeLink": "https://www.somelink.com",
+        "userId": 4
+      },
+      "success": "New favorite created"
+    }
+  }
 }
 ```
 
-### GET /api/v1/favorites?api_key=*new user generated api key*
-
-* User must include their api key as a paramater in order to see their favorite recipes
-
-Response:
+#### Now when the check the User again:
 
 ```
 {
-    "data": [
+  user(apiKey: "29fa7c8b95df8fa19b6cde918b48fc66"){
+    id
+    name
+    email
+    apiKey
+    favorites{
+      id
+      country
+      recipeTitle
+      recipeLink
+    }
+  }
+}
+```
+
+#### Response: 
+
+```
+{
+  "data": {
+    "user": {
+      "id": "4",
+      "name": "Eli Fuchsman",
+      "email": "elif@mail.com",
+      "apiKey": "29fa7c8b95df8fa19b6cde918b48fc66",
+      "favorites": [
         {
-            "id": "3",
-            "type": "favorite",
-            "attributes": {
-                "recipe_title": "72oz Tomahawk Ribeye",
-                "recipe_link": "https://www.somelink.com",
-                "country": "Country",
-                "created_at": "2023-01-18T01:39:21.964Z"
-            }
-        },
-        {
-            "id": "4",
-            "type": "favorite",
-            "attributes": {
-                "recipe_title": "4lb Lobster",
-                "recipe_link": "https://www.somelink.com",
-                "country": "Country",
-                "created_at": "2023-01-18T01:39:50.162Z"
-            }
-        },
-        {
-            "id": "5",
-            "type": "favorite",
-            "attributes": {
-                "recipe_title": "Foie Gras",
-                "recipe_link": "https://www.somelink.com",
-                "country": "Country",
-                "created_at": "2023-01-18T01:40:06.913Z"
-            }
+          "id": "7",
+          "country": "USA",
+          "recipeTitle": "72oz Tomahawk Ribeye",
+          "recipeLink": "https://www.somelink.com"
         }
-    ]
+      ]
+    }
+  }
 }
 ```
+
+### DESTROY deleteFavorite
+
+#### Request:
+
+```
+mutation {
+  deleteFavorite(input: {id: 7, apiKey: "29fa7c8b95df8fa19b6cde918b48fc66"}) {
+    success
+  }
+}
+```
+
+### Response:
+
+```
+{
+  "data": {
+    "deleteFavorite": {
+      "success": "Favorite successfully deleted"
+    }
+  }
+}
+```
+
+#### Now when the check the User again:
+
+```
+{
+  user(apiKey: "29fa7c8b95df8fa19b6cde918b48fc66"){
+    id
+    name
+    email
+    apiKey
+    favorites{
+      id
+      country
+      recipeTitle
+      recipeLink
+    }
+  }
+}
+```
+
+#### Response:
+
+```
+{
+  "data": {
+    "user": {
+      "id": "4",
+      "name": "Eli Fuchsman",
+      "email": "elif@mail.com",
+      "apiKey": "29fa7c8b95df8fa19b6cde918b48fc66",
+      "favorites": []
+    }
+  }
+}
+```
+
 
 ## Contact 
 
@@ -369,6 +484,8 @@ Response:
 <h3><b>Acknowledgements</b></h3>
 
 Turing School of Software Design: [https://turing.edu/](https://turing.edu/)
+
+Original Lunch and Learn Project: [https://github.com/efuchsman/lunch-and-learn](https://github.com/efuchsman/lunch-and-learn)
 
 <p>Image Source:</p>
 <p> https://robbreport.com/wp-content/uploads/2018/12/edit-PLAT-EUG-174-YOAN-CHEVOJON.jpg </p>
