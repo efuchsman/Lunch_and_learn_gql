@@ -16,6 +16,7 @@
 * [App Description](#app-description)
 * [Learning Goals](#learning-goals)
 * [System Requirements](#system-requirements)
+* [Technologies Used](#technologies-used)
 * [Setup](#setup)
 * [Respository](#repository)
 * [Endpoints](#endpoints)
@@ -35,7 +36,7 @@
 * Ruby 2.7.4
 * Rails 5.2.8
 
-# Technology Used: 
+# Technologies Used 
 
 ![Ruby on Rails](	https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=ffffff&color=CC0000)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-008bb9?style=for-the-badge&logo=PostgreSQL&logoColor=ffffff&color=008bb9)
